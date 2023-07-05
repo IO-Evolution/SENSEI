@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import FSE_DOCUMENT
 
-# Register your models here.
+admin.site.register(FSE_DOCUMENT)
