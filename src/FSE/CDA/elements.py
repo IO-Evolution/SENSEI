@@ -1,12 +1,30 @@
-from dataclasses import dataclass
+from exceptions import InvalidGivenValue, InvalidGivenSubelementData
 
-class InvalidGivenValue(Exception):
-    """ One or more given value is invalid """
-    pass
+class Attribute:
+    """ XML Attributes Class """
+    def __new__(cls, name: str, data: dict, required: bool = True):
+        try:
+            return data[name]
+        except Exception as error:
+            if required:
+                raise InvalidGivenValue from error
+            return None
 
-class Attribute():
-    """ XML Attributes structures """
-    required: bool
+
+class Component:
+    """ XML Component Class """
+    def __new__(cls, className: type, name: str, data: dict, required: bool = True):
+        try:
+            return className(name, data[name])
+        except Exception as error:
+            if name not in data:
+                raise InvalidGivenSubelementData from error
+            elif required:
+                raise error
+            return None
+
+class Value:
+    """ XML Element structures """
     name: str
     value: str
 
@@ -15,25 +33,8 @@ class Attribute():
         try:
             instance.name = name
             instance.value = data[name]
-            instance.required = required
-            return instance
-        except Exception:
-            if required:
-                raise InvalidGivenValue
-            return None
-
-class Sub():
-    """ XML Element structures """
-    def __new__(cls, className: type, name: str, data: dict, required: bool = True):
-        
-        try:
-            instance = className(name, data, required)
             return instance
         except Exception as error:
             if required:
-                raise error
+                raise InvalidGivenValue from error
             return None
-
-class Value():
-    """ XML Element structures """
-    pass
