@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-_#gs7br+z*wjk)$thg-_5jun$=ial4!^9w^0bd#soe23dye*xh
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ["https://eliamenoni-opulent-halibut-p755jq6j5w9c6gjx-8000.preview.app.github.dev"]
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "FSE",
 ]
 
