@@ -7,7 +7,7 @@ class Attribute:
             return data[name]
         except Exception as error:
             if required:
-                raise InvalidGivenValue from error
+                raise InvalidGivenValue(f"Something went wrong generating {name}") from error
             return None
 
 
@@ -15,26 +15,31 @@ class Component:
     """ XML Component Class """
     def __new__(cls, className: type, name: str, data: dict, required: bool = True):
         try:
-            return className(name, data[name])
+            if type(data[name]) == dict:
+                return className(name, data[name])
+            elif type(data[name]) == list:
+                return [className(name, data[name][i]) for i in data[name]]
+            else:
+                raise InvalidGivenSubelementData(f"{name} of type {className.__class__} must be dict or list")
         except Exception as error:
             if name not in data:
-                raise InvalidGivenSubelementData from error
+                raise InvalidGivenSubelementData(f"Something went wrong generating {name} of type {className.__class__}") from error
             elif required:
                 raise error
             return None
 
-class Value:
-    """ XML Element structures """
-    name: str
-    value: str
+# class Value:
+#     """ XML Element structures """
+#     name: str
+#     value: str
 
-    def __new__(cls, name: str, data: dict, required: bool = True):
-        instance = super().__new__(cls)
-        try:
-            instance.name = name
-            instance.value = data[name]
-            return instance
-        except Exception as error:
-            if required:
-                raise InvalidGivenValue from error
-            return None
+#     def __new__(cls, name: str, data: dict, required: bool = True):
+#         instance = super().__new__(cls)
+#         try:
+#             instance.name = name
+#             instance.value = data[name]
+#             return instance
+#         except Exception as error:
+#             if required:
+#                 raise InvalidGivenValue from error
+#             return None
