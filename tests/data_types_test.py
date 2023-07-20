@@ -6,19 +6,20 @@ import os.path
 parent_folder = os.getcwd()
 sys.path.append(parent_folder + '/src/FSE/CDA')
 
-import data_types as dt  # nopep8
+import cda_types as PrimitiveType  # nopep8
 from exceptions import InvalidGivenValue, InvalidGivenSubelementData  # nopep8
 
 
 class Test_BL_Boolean(unittest.TestCase):
+
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.BL_Boolean, "boolean", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.BL_Boolean, "boolean", {})
 
     def test_required_KO_nonEmptySet(self):
         test_case = {
             "non_value": True
         }
-        self.assertRaises(InvalidGivenValue, dt.BL_Boolean, "boolean", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.BL_Boolean, "boolean", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -26,7 +27,7 @@ class Test_BL_Boolean(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.BL_Boolean("boolean", test_case)
+            obj = PrimitiveType.BL_Boolean("boolean", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -36,13 +37,13 @@ class Test_BL_Boolean(unittest.TestCase):
 
 class Test_II_InstanceIdentifier(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.II_InstanceIdentifier, "id", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.II_InstanceIdentifier, "id", {})
 
     def test_required_KO_nonEmptySet_noOptional(self):
         test_case = {
             "non_root": "0.0.0.0"
         }
-        self.assertRaises(InvalidGivenValue, dt.II_InstanceIdentifier, "id", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.II_InstanceIdentifier, "id", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -50,7 +51,7 @@ class Test_II_InstanceIdentifier(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.II_InstanceIdentifier("id", test_case)
+            obj = PrimitiveType.II_InstanceIdentifier("id", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -65,7 +66,7 @@ class Test_II_InstanceIdentifier(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.II_InstanceIdentifier("id", test_case)
+            obj = PrimitiveType.II_InstanceIdentifier("id", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -76,14 +77,14 @@ class Test_II_InstanceIdentifier(unittest.TestCase):
 
 class Test_ED_EncapsulatedData(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.ED_EncapsulatedData, "data", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.ED_EncapsulatedData, "data", {})
 
     def test_required_KO_text(self):
         test_case = {
             "mediaType": "H",
             "representation": "isdaiosuda908798sd798a7sd897987=="
         }
-        self.assertRaises(InvalidGivenValue, dt.ED_EncapsulatedData, "data", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.ED_EncapsulatedData, "data", test_case)
 
     def test_required_OK_text(self):
         test_case = {
@@ -93,7 +94,7 @@ class Test_ED_EncapsulatedData(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.ED_EncapsulatedData("data", test_case)
+            obj = PrimitiveType.ED_EncapsulatedData("data", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -112,7 +113,7 @@ class Test_ED_EncapsulatedData(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.ED_EncapsulatedData("data", test_case)
+            obj = PrimitiveType.ED_EncapsulatedData("data", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -135,15 +136,15 @@ class Test_ED_EncapsulatedData(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.ED_EncapsulatedData("data", test_case)
+            obj = PrimitiveType.ED_EncapsulatedData("data", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
         self.assertEqual("data", obj.name)
         self.assertEqual(test_case["mediaType"], obj.mediaType)
         self.assertEqual(test_case["representation"], obj.representation)
-        self.assertEqual(dt.TEL_TelecomincationAddress, type(obj.reference))
-        self.assertEqual(dt.ED_EncapsulatedData, type(obj.thumbnail))
+        self.assertEqual(PrimitiveType.TEL_TelecomincationAddress, type(obj.reference))
+        self.assertEqual(PrimitiveType.ED_EncapsulatedData, type(obj.thumbnail))
 
     def test_optional_full_list(self):
         test_case = {
@@ -176,7 +177,7 @@ class Test_ED_EncapsulatedData(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.ED_EncapsulatedData("data", test_case)
+            obj = PrimitiveType.ED_EncapsulatedData("data", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -187,19 +188,19 @@ class Test_ED_EncapsulatedData(unittest.TestCase):
         self.assertIsNotNone(obj.thumbnail)
         self.assertEqual(len(test_case["reference"]), len(obj.reference))
         self.assertEqual(len(test_case["thumbnail"]), len(obj.thumbnail))
-        self.assertEqual(dt.TEL_TelecomincationAddress, type(obj.reference[0]))
-        self.assertEqual(dt.ED_EncapsulatedData, type(obj.thumbnail[0]))
+        self.assertEqual(PrimitiveType.TEL_TelecomincationAddress, type(obj.reference[0]))
+        self.assertEqual(PrimitiveType.ED_EncapsulatedData, type(obj.thumbnail[0]))
 
 
 class Test_ST_String(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.ST_String, "string", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.ST_String, "string", {})
 
     def test_required_KO_nonEmptySet(self):
         test_case = {
             "non_text": "googd"
         }
-        self.assertRaises(InvalidGivenValue, dt.ST_String, "string", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.ST_String, "string", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -207,7 +208,7 @@ class Test_ST_String(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.ST_String("string", test_case)
+            obj = PrimitiveType.ST_String("string", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -217,14 +218,14 @@ class Test_ST_String(unittest.TestCase):
 
 class Test_CD_ConceptDescriptor(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.CD_ConceptDescriptor, "concept", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CD_ConceptDescriptor, "concept", {})
 
     def test_required_KO_nonEmptySet_noOptional(self):
         test_case = {
             "non_code": "0.0.0.0",
             "non_codeSystem": "LOINC"
         }
-        self.assertRaises(InvalidGivenValue, dt.CD_ConceptDescriptor, "concept", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CD_ConceptDescriptor, "concept", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -233,7 +234,7 @@ class Test_CD_ConceptDescriptor(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CD_ConceptDescriptor("concept", test_case)
+            obj = PrimitiveType.CD_ConceptDescriptor("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -258,7 +259,7 @@ class Test_CD_ConceptDescriptor(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CD_ConceptDescriptor("concept", test_case)
+            obj = PrimitiveType.CD_ConceptDescriptor("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -268,8 +269,8 @@ class Test_CD_ConceptDescriptor(unittest.TestCase):
         self.assertEqual(test_case["codeSystemVersion"], obj.codeSystemVersion)
         self.assertEqual(test_case["displayName"], obj.displayName)
         self.assertEqual(test_case["qualifier"], obj.qualifier)
-        self.assertEqual(dt.ST_String, type(obj.originalText))
-        self.assertEqual(dt.CD_ConceptDescriptor, type(obj.translaction))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText))
+        self.assertEqual(PrimitiveType.CD_ConceptDescriptor, type(obj.translaction))
 
     def test_optional_full_list(self):
         test_case = {
@@ -309,7 +310,7 @@ class Test_CD_ConceptDescriptor(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CD_ConceptDescriptor("concept", test_case)
+            obj = PrimitiveType.CD_ConceptDescriptor("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -323,20 +324,20 @@ class Test_CD_ConceptDescriptor(unittest.TestCase):
         self.assertIsNotNone(obj.translaction)
         self.assertEqual(len(test_case["originalText"]), len(obj.originalText))
         self.assertEqual(len(test_case["translaction"]), len(obj.translaction))
-        self.assertEqual(dt.ST_String, type(obj.originalText[0]))
-        self.assertEqual(dt.CD_ConceptDescriptor, type(obj.translaction[0]))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText[0]))
+        self.assertEqual(PrimitiveType.CD_ConceptDescriptor, type(obj.translaction[0]))
 
 
 class Test_CE_CodedWithEquivalents(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.CE_CodedWithEquivalents, "concept", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CE_CodedWithEquivalents, "concept", {})
 
     def test_required_KO_nonEmptySet_noOptional(self):
         test_case = {
             "non_code": "0.0.0.0",
             "non_codeSystem": "LOINC"
         }
-        self.assertRaises(InvalidGivenValue, dt.CE_CodedWithEquivalents, "concept", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CE_CodedWithEquivalents, "concept", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -345,7 +346,7 @@ class Test_CE_CodedWithEquivalents(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CE_CodedWithEquivalents("concept", test_case)
+            obj = PrimitiveType.CE_CodedWithEquivalents("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -369,7 +370,7 @@ class Test_CE_CodedWithEquivalents(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CE_CodedWithEquivalents("concept", test_case)
+            obj = PrimitiveType.CE_CodedWithEquivalents("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -378,8 +379,8 @@ class Test_CE_CodedWithEquivalents(unittest.TestCase):
         self.assertEqual(test_case["codeSystem"], obj.codeSystem)
         self.assertEqual(test_case["codeSystemVersion"], obj.codeSystemVersion)
         self.assertEqual(test_case["displayName"], obj.displayName)
-        self.assertEqual(dt.ST_String, type(obj.originalText))
-        self.assertEqual(dt.CD_ConceptDescriptor, type(obj.translaction))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText))
+        self.assertEqual(PrimitiveType.CD_ConceptDescriptor, type(obj.translaction))
 
     def test_optional_full_list(self):
         test_case = {
@@ -418,7 +419,7 @@ class Test_CE_CodedWithEquivalents(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CE_CodedWithEquivalents("concept", test_case)
+            obj = PrimitiveType.CE_CodedWithEquivalents("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -431,20 +432,20 @@ class Test_CE_CodedWithEquivalents(unittest.TestCase):
         self.assertIsNotNone(obj.translaction)
         self.assertEqual(len(test_case["originalText"]), len(obj.originalText))
         self.assertEqual(len(test_case["translaction"]), len(obj.translaction))
-        self.assertEqual(dt.ST_String, type(obj.originalText[0]))
-        self.assertEqual(dt.CD_ConceptDescriptor, type(obj.translaction[0]))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText[0]))
+        self.assertEqual(PrimitiveType.CD_ConceptDescriptor, type(obj.translaction[0]))
 
 
 class Test_CV_CodedValue(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.CV_CodedValue, "concept", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CV_CodedValue, "concept", {})
 
     def test_required_KO_nonEmptySet_noOptional(self):
         test_case = {
             "non_code": "0.0.0.0",
             "non_codeSystem": "LOINC"
         }
-        self.assertRaises(InvalidGivenValue, dt.CV_CodedValue, "concept", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CV_CodedValue, "concept", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -453,7 +454,7 @@ class Test_CV_CodedValue(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CV_CodedValue("concept", test_case)
+            obj = PrimitiveType.CV_CodedValue("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -473,7 +474,7 @@ class Test_CV_CodedValue(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CV_CodedValue("concept", test_case)
+            obj = PrimitiveType.CV_CodedValue("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -482,7 +483,7 @@ class Test_CV_CodedValue(unittest.TestCase):
         self.assertEqual(test_case["codeSystem"], obj.codeSystem)
         self.assertEqual(test_case["codeSystemVersion"], obj.codeSystemVersion)
         self.assertEqual(test_case["displayName"], obj.displayName)
-        self.assertEqual(dt.ST_String, type(obj.originalText))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText))
 
     def test_optional_full_list(self):
         test_case = {
@@ -507,7 +508,7 @@ class Test_CV_CodedValue(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CV_CodedValue("concept", test_case)
+            obj = PrimitiveType.CV_CodedValue("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -518,18 +519,18 @@ class Test_CV_CodedValue(unittest.TestCase):
         self.assertEqual(test_case["displayName"], obj.displayName)
         self.assertIsNotNone(obj.originalText)
         self.assertEqual(len(test_case["originalText"]), len(obj.originalText))
-        self.assertEqual(dt.ST_String, type(obj.originalText[0]))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.originalText[0]))
 
 
 class Test_CS_CodedSimpleValue(unittest.TestCase):
     def test_required_KO_emptySet(self):
-        self.assertRaises(InvalidGivenValue, dt.CS_CodedSimpleValue, "concept", {})
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CS_CodedSimpleValue, "concept", {})
 
     def test_required_KO_nonEmptySet_noOptional(self):
         test_case = {
             "non_code": "0.0.0.0",
         }
-        self.assertRaises(InvalidGivenValue, dt.CS_CodedSimpleValue, "concept", test_case)
+        self.assertRaises(InvalidGivenValue, PrimitiveType.CS_CodedSimpleValue, "concept", test_case)
 
     def test_required_OK(self):
         test_case = {
@@ -537,7 +538,7 @@ class Test_CS_CodedSimpleValue(unittest.TestCase):
         }
         obj = None
         try:
-            obj = dt.CS_CodedSimpleValue("concept", test_case)
+            obj = PrimitiveType.CS_CodedSimpleValue("concept", test_case)
         except Exception as error:
             self.fail("Raised exception")
 
@@ -546,11 +547,164 @@ class Test_CS_CodedSimpleValue(unittest.TestCase):
 
 
 class Test_TEL_TelecomincationAddress(unittest.TestCase):
-    pass
+    def test_required_KO_emptySet(self):
+        self.assertRaises(InvalidGivenValue, PrimitiveType.TEL_TelecomincationAddress, "telecomunication", {})
+
+    def test_required_KO_nonEmptySet_noOptional(self):
+        test_case = {
+            "non_value": "mail@email.it",
+        }
+        self.assertRaises(InvalidGivenValue, PrimitiveType.TEL_TelecomincationAddress, "telecomunication", test_case)
+
+    def test_required_OK(self):
+        test_case = {
+            "value": "mail@email.it",
+        }
+        obj = None
+        try:
+            obj = PrimitiveType.TEL_TelecomincationAddress("telecomunication", test_case)
+        except Exception as error:
+            self.fail("Raised exception")
+
+        self.assertEqual("telecomunication", obj.name)
+        self.assertEqual(test_case["value"], obj.value)
+
+    def test_optional_full_basic(self):
+        test_case = {
+            "value": "mail@email.it",
+            "use": "H",
+            "useablePeriod": {
+                "high": {
+                    "value": "top"
+                }
+            }
+        }
+        obj = None
+        try:
+            obj = PrimitiveType.TEL_TelecomincationAddress("telecomunication", test_case)
+        except Exception as error:
+            self.fail("Raised exception")
+
+        self.assertEqual("telecomunication", obj.name)
+        self.assertEqual(test_case["value"], obj.value)
+        self.assertEqual(test_case["use"], obj.use)
+        self.assertIsNotNone(obj.useablePeriod)
+        self.assertEqual(PrimitiveType.IVL_TS_IntervalOfTime, type(obj.useablePeriod))
+
+    def test_optional_KO_list(self):
+        test_case = {
+            "value": "mail@email.it",
+            "use": "H",
+            "useablePeriod": [
+                {
+                    "high": {
+                        "value": "top"
+                    }
+                },
+                {
+                    "high": {
+                        "value": "top"
+                    }
+                }
+            ]
+        }
+        obj = None
+        try:
+            obj = PrimitiveType.TEL_TelecomincationAddress("telecomunication", test_case)
+        except Exception as error:
+            self.fail("Raised exception")
+
+        self.assertEqual("telecomunication", obj.name)
+        self.assertEqual(test_case["value"], obj.value)
+        self.assertEqual(test_case["use"], obj.use)
+        self.assertIsNone(obj.useablePeriod)
 
 
 class Test_AD_PostalAddress(unittest.TestCase):
-    pass
+    def test_required_KO_emptySet(self):
+        self.assertRaises(InvalidGivenValue, PrimitiveType.AD_PostalAddress, "address", {})
+
+    def test_optional_full_basic(self):
+        test_case = {
+            "use": "H",
+            "streetAddressLine": {
+                "text": "via bla bla"
+            },
+            "city": {
+                "text": "Spezi"
+            },
+            "postalCode": {
+                "text": "123456"
+            },
+            "country": {
+                "text": "Italy"
+            },
+        }
+        obj = None
+        try:
+            obj = PrimitiveType.AD_PostalAddress("address", test_case)
+        except Exception as error:
+            self.fail("Raised exception")
+
+        self.assertEqual("address", obj.name)
+        self.assertEqual(test_case["use"], obj.use)
+        self.assertIsNotNone(obj.streetAddressLine)
+        self.assertIsNotNone(obj.city)
+        self.assertIsNotNone(obj.postalCode)
+        self.assertIsNotNone(obj.country)
+        self.assertEqual(PrimitiveType.ST_String, type(obj.streetAddressLine))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.city))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.postalCode))
+        self.assertEqual(PrimitiveType.ST_String, type(obj.country))
+
+    def test_optional_KO_list(self):
+        test_case = {
+            "use": "H",
+            "streetAddressLine": [
+                {
+                    "text": "via bla bla"
+                },
+                {
+                    "text": "via bla bla"
+                }
+            ],
+            "city": [
+                {
+                    "text": "SPEZIA"
+                },
+                {
+                    "text": "SPEZIA"
+                }
+            ],
+            "postalCode": [
+                {
+                    "text": "123456"
+                },
+                {
+                    "text": "123456"
+                }
+            ],
+            "country": [
+                {
+                    "text": "ITALY"
+                },
+                {
+                    "text": "ITALY"
+                }
+            ],
+        }
+        obj = None
+        try:
+            obj = PrimitiveType.AD_PostalAddress("address", test_case)
+        except Exception as error:
+            self.fail("Raised exception")
+
+        self.assertEqual("address", obj.name)
+        self.assertEqual(test_case["use"], obj.use)
+        self.assertIsNone(obj.streetAddressLine)
+        self.assertIsNone(obj.city)
+        self.assertIsNone(obj.postalCode)
+        self.assertIsNone(obj.country)
 
 
 class Test_PN_PersonName(unittest.TestCase):
