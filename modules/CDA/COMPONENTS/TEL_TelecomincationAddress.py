@@ -1,8 +1,8 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
 
-from COMPONENTS.IVL_TS_IntervalOfTime import IVL_TS_IntervalOfTime
+from IVL_TS_IntervalOfTime import IVL_TS_IntervalOfTime
 
 class TEL_TelecomincationAddress(Component):
     def __init__(self, name: str, data: dict):

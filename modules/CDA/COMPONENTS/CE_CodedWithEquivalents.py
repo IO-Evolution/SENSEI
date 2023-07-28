@@ -1,9 +1,9 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
 
-from COMPONENTS.ST_String import ST_String
-from COMPONENTS.CD_ConceptDescriptor import CD_ConceptDescriptor
+from ST_String import ST_String
+from CD_ConceptDescriptor import CD_ConceptDescriptor
 
 class CE_CodedWithEquivalents(Component):
     def __init__(self, name: str, data: dict):

@@ -1,9 +1,9 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
 
-from COMPONENTS.ST_String import ST_String
-from COMPONENTS.IVL_TS_IntervalOfTime import IVL_TS_IntervalOfTime
+from ST_String import ST_String
+from IVL_TS_IntervalOfTime import IVL_TS_IntervalOfTime
 
 class PN_PersonName(Component):
     def __init__(self, name: str, data: dict):

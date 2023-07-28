@@ -2,7 +2,7 @@ from STRUCTURE_UTILS.Component import Component
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
 
-from COMPONENTS.TEL_TelecomincationAddress import TEL_TelecomincationAddress
+from TEL_TelecomincationAddress import TEL_TelecomincationAddress
 
 class ED_EncapsulatedData(Component):
     def __init__(self, name: str, data: dict):

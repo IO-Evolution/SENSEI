@@ -1,6 +1,15 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
+
+from CS_CodedSimpleValue import CS_CodedSimpleValue
+from InfrastructureRootTypeId import InfrastructureRootTypeId
+from II_InstanceIdentifier import II_InstanceIdentifier
+from CE_CodedWithEquivalents import CE_CodedWithEquivalents
+from AD_PostalAddress import AD_PostalAddress
+from TEL_TelecomincationAddress import TEL_TelecomincationAddress
+from Person import Person
+from Organization import Organization
 
 class Guardian(Component):
     def __init__(self, name: str, data: dict):

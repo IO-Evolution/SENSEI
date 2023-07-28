@@ -1,6 +1,15 @@
-from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
+
+from CS_CodedSimpleValue import CS_CodedSimpleValue
+from InfrastructureRootTypeId import InfrastructureRootTypeId
+from II_InstanceIdentifier import II_InstanceIdentifier
+from PN_PersonName import PN_PersonName
+from TS_PointInTime import TS_PointInTime
+from CE_CodedWithEquivalents import CE_CodedWithEquivalents
+from Guardian import Guardian
+from BirthPlace import BirthPlace
+from LanguageCommunication import LanguageCommunication
 
 class Patient(Component):
     def __init__(self, name: str, data: dict):
@@ -41,3 +50,5 @@ class Patient(Component):
             "classCode": "",
             "determinerCode": ""
         }
+
+print(Patient.as_dict())

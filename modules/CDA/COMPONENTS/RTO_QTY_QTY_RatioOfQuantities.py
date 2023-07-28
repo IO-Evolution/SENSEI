@@ -1,9 +1,9 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
 
-from COMPONENTS.PQ_PhysicalQuantities import PQ_PhysicalQuantities
-from COMPONENTS.INT_IntegerNumber import INT_IntegerNumber
+from PQ_PhysicalQuantities import PQ_PhysicalQuantities
+from INT_IntegerNumber import INT_IntegerNumber
 
 class RTO_QTY_QTY_RatioOfQuantities(Component):
     def __init__(self, name: str, data: dict):

@@ -1,5 +1,5 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
-from STRUCTURE_UTILS import Component
+from STRUCTURE_UTILS.Component import Component as Component
 
 
 class ST_String(Component):

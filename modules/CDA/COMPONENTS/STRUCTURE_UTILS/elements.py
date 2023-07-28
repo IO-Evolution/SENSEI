@@ -1,4 +1,4 @@
-from exceptions import InvalidGivenValue, InvalidGivenSubelementData
+from .exceptions import InvalidGivenValue, InvalidGivenSubelementData
 
 class Attribute:
     """ XML Attributes Class """

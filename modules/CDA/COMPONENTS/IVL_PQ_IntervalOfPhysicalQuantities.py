@@ -1,8 +1,8 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-import STRUCTURE_UTILS.Component as Component
+from STRUCTURE_UTILS.Component import Component as Component
 
-from COMPONENTS.INT_IntegerNumber import INT_IntegerNumber
+from INT_IntegerNumber import INT_IntegerNumber
 
 class IVL_PQ_IntervalOfPhysicalQuantities(Component):
     def __init__(self, name: str, data: dict):
