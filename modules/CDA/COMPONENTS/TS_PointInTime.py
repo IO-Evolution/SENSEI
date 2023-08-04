@@ -1,11 +1,12 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-from STRUCTURE_UTILS.Component import Component as Component
+from STRUCTURE_UTILS.Component import Component
 
 
 class TS_PointInTime(Component):
+    """TS_PointInTime"""
     def __init__(self, name: str, data: dict):
-        if data == {} or data is None:
+        if not data or data is None:
             raise InvalidGivenValue("Empty Data Set")
 
         self.name = name
@@ -14,6 +15,7 @@ class TS_PointInTime(Component):
 
     @classmethod
     def as_dict(cls):
+        """as_dict"""
         return {
             "value": ""
         }

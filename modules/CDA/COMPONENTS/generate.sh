@@ -6,7 +6,7 @@ class_names=("Component" "BL_Boolean" "II_InstanceIdentifier" "ED_EncapsulatedDa
 # Contenuto del template per le classi
 template_content='from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-from STRUCTURE_UTILS.Component import Component as Component
+from STRUCTURE_UTILS.Component import Component
 
 class %s(Component):
     def __init__(self, name: str, data: dict):

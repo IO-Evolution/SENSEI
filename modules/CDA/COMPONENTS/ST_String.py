@@ -1,10 +1,10 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
-from STRUCTURE_UTILS.Component import Component as Component
-
+from STRUCTURE_UTILS.Component import Component
 
 class ST_String(Component):
+    """ST_String"""    
     def __init__(self, name: str, data: str):
-        if data == {} or data is None:
+        if not data or data is None:
             raise InvalidGivenValue("Empty Data Set")
 
         self.name = name
@@ -15,6 +15,7 @@ class ST_String(Component):
 
     @classmethod
     def as_dict(cls):
+        """as_dict"""        
         return {
             "text": "",
         }

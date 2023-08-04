@@ -1,8 +1,9 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-from STRUCTURE_UTILS.Component import Component as Component
+from STRUCTURE_UTILS.Component import Component
 
 class ON_OrganisationName(Component):
+    """ON_OrganisationName"""    
     def __init__(self, name: str, data: str):
         if data == {} or data is None:
             raise InvalidGivenValue("Empty Data Set")
@@ -24,6 +25,8 @@ class ON_OrganisationName(Component):
 
     @classmethod
     def as_dict(cls):
+        """as_dict"""        
         return {
             "text": ""
         }
+    

@@ -1,11 +1,14 @@
 import xml.etree.ElementTree as ET
 
+
 class Factory:
+    """FACTORY"""
     def __init__(self, root_name: str, data: dict):
         self.root_name = root_name
         self.dict_data = data
-    
+
     def dict_to_xml(self):
+        """dict_to_xml"""
         root = ET.Element(self.root_name)
         self._dict_to_xml(root, self.dict_data)
         ET.indent(root, space="\t", level=0)
@@ -24,240 +27,242 @@ class Factory:
             else:
                 subnode = ET.SubElement(node, key)
                 subnode.text = f"dato di {key}"
-                
-    def save_dict_to_xml(self, filename:str):
+
+    def save_dict_to_xml(self, filename: str):
+        """save_dict_to_xml"""
         xml_string = self.dict_to_xml()
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(xml_string)
 
+
 test = {
-    "realmCode":{
-        "code":""
+    "realmCode": {
+        "code": ""
     },
-    "typeId":{
-        "root":"",
-        "extension":""
+    "typeId": {
+        "root": "",
+        "extension": ""
     },
-    "templateId":{
-        "root":"",
-        "extension":""
+    "templateId": {
+        "root": "",
+        "extension": ""
     },
-    "id":{
-        "root":"",
-        "extension":""
+    "id": {
+        "root": "",
+        "extension": ""
     },
-    "name":{
-        "family":{
-            "text":""
+    "name": {
+        "family": {
+            "text": ""
         },
-        "given":{
-            "text":""
+        "given": {
+            "text": ""
         },
-        "validTime":{
-            "low":{
-                "value":""
+        "validTime": {
+            "low": {
+                "value": ""
             },
-            "high":{
-                "value":""
+            "high": {
+                "value": ""
             },
-            "center":{
-                "value":""
+            "center": {
+                "value": ""
             },
-            "width":{
-                "value":"",
-                "unit":""
+            "width": {
+                "value": "",
+                "unit": ""
             }
         }
     },
-    "administrativeGenderCode":{
-        "code":"",
-        "codeSystem":"",
-        "codeSysteVersion":"",
-        "displayName":"",
-        "originalText":{
-            "text":""
+    "administrativeGenderCode": {
+        "code": "",
+        "codeSystem": "",
+        "codeSysteVersion": "",
+        "displayName": "",
+        "originalText": {
+            "text": ""
         },
-        "translaction":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "translaction": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":"RECURSIVE",
-            "qualifier":""
+            "translaction": "RECURSIVE",
+            "qualifier": ""
         }
     },
-    "birthTime":{
-        "value":""
+    "birthTime": {
+        "value": ""
     },
-    "maritalStatusCode":{
-        "code":"",
-        "codeSystem":"",
-        "codeSysteVersion":"",
-        "displayName":"",
-        "originalText":{
-            "text":""
+    "maritalStatusCode": {
+        "code": "",
+        "codeSystem": "",
+        "codeSysteVersion": "",
+        "displayName": "",
+        "originalText": {
+            "text": ""
         },
-        "translaction":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "translaction": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":"RECURSIVE",
-            "qualifier":""
+            "translaction": "RECURSIVE",
+            "qualifier": ""
         }
     },
-    "religiousAfflitionCode":{
-        "code":"",
-        "codeSystem":"",
-        "codeSysteVersion":"",
-        "displayName":"",
-        "originalText":{
-            "text":""
+    "religiousAfflitionCode": {
+        "code": "",
+        "codeSystem": "",
+        "codeSysteVersion": "",
+        "displayName": "",
+        "originalText": {
+            "text": ""
         },
-        "translaction":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "translaction": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":"RECURSIVE",
-            "qualifier":""
+            "translaction": "RECURSIVE",
+            "qualifier": ""
         }
     },
-    "raceCode":{
-        "code":"",
-        "codeSystem":"",
-        "codeSysteVersion":"",
-        "displayName":"",
-        "originalText":{
-            "text":""
+    "raceCode": {
+        "code": "",
+        "codeSystem": "",
+        "codeSysteVersion": "",
+        "displayName": "",
+        "originalText": {
+            "text": ""
         },
-        "translaction":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "translaction": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":"RECURSIVE",
-            "qualifier":""
+            "translaction": "RECURSIVE",
+            "qualifier": ""
         }
     },
-    "ethnicGroupCode":{
-        "code":"",
-        "codeSystem":"",
-        "codeSysteVersion":"",
-        "displayName":"",
-        "originalText":{
-            "text":""
+    "ethnicGroupCode": {
+        "code": "",
+        "codeSystem": "",
+        "codeSysteVersion": "",
+        "displayName": "",
+        "originalText": {
+            "text": ""
         },
-        "translaction":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "translaction": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":"RECURSIVE",
-            "qualifier":""
+            "translaction": "RECURSIVE",
+            "qualifier": ""
         }
     },
-    "guardian":{
-        "realmCode":{
-            "code":""
+    "guardian": {
+        "realmCode": {
+            "code": ""
         },
-        "typeId":{
-            "root":"",
-            "extension":""
+        "typeId": {
+            "root": "",
+            "extension": ""
         },
-        "templateId":{
-            "root":"",
-            "extension":""
+        "templateId": {
+            "root": "",
+            "extension": ""
         },
-        "id":{
-            "root":"",
-            "extension":""
+        "id": {
+            "root": "",
+            "extension": ""
         },
-        "code":{
-            "code":"",
-            "codeSystem":"",
-            "codeSysteVersion":"",
-            "displayName":"",
-            "originalText":{
-                "text":""
+        "code": {
+            "code": "",
+            "codeSystem": "",
+            "codeSysteVersion": "",
+            "displayName": "",
+            "originalText": {
+                "text": ""
             },
-            "translaction":{
-                "code":"",
-                "codeSystem":"",
-                "codeSysteVersion":"",
-                "displayName":"",
-                "originalText":{
-                    "text":""
+            "translaction": {
+                "code": "",
+                "codeSystem": "",
+                "codeSysteVersion": "",
+                "displayName": "",
+                "originalText": {
+                    "text": ""
                 },
-                "translaction":"RECURSIVE",
-                "qualifier":""
+                "translaction": "RECURSIVE",
+                "qualifier": ""
             }
         },
-        "addr":{
-            "use":"",
-            "steedAddressLine":{
-                "text":""
+        "addr": {
+            "use": "",
+            "steedAddressLine": {
+                "text": ""
             },
-            "city":{
-                "text":""
+            "city": {
+                "text": ""
             },
-            "postalCode":{
-                "text":""
+            "postalCode": {
+                "text": ""
             },
-            "country":{
-                "text":""
+            "country": {
+                "text": ""
             }
         },
-        "telecom":{
-            "value":"",
-            "use":"",
-            "useablePeriod":{
-                "low":{
-                    "value":""
+        "telecom": {
+            "value": "",
+            "use": "",
+            "useablePeriod": {
+                "low": {
+                    "value": ""
                 },
-                "high":{
-                    "value":""
+                "high": {
+                    "value": ""
                 },
-                "center":{
-                    "value":""
+                "center": {
+                    "value": ""
                 },
-                "width":{
-                    "value":"",
-                    "unit":""
+                "width": {
+                    "value": "",
+                    "unit": ""
                 }
             }
         },
-        "guardianPerson":{
-            
+        "guardianPerson": {
+
         },
-        "guardianOrganization":{
-            
+        "guardianOrganization": {
+
         },
-        "classCode":""
+        "classCode": ""
     },
-    "birthplace":{
-        
+    "birthplace": {
+
     },
-    "languageCommunication":{
-        
+    "languageCommunication": {
+
     },
-    "classCode":"",
-    "determinerCode":""
+    "classCode": "",
+    "determinerCode": ""
 }
 
 fact = Factory("ClinicalDocument", test)

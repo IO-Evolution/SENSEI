@@ -1,13 +1,14 @@
 from STRUCTURE_UTILS.exceptions import InvalidGivenValue
 import STRUCTURE_UTILS.elements as Element
-from STRUCTURE_UTILS.Component import Component as Component
+from STRUCTURE_UTILS.Component import Component
 
 from ST_String import ST_String
 from CD_ConceptDescriptor import CD_ConceptDescriptor
 
 class CE_CodedWithEquivalents(Component):
+        
     def __init__(self, name: str, data: dict):
-        if data == {} or data is None:
+        if not data or data is None:
             raise InvalidGivenValue("Empty Data Set")
 
         self.name = name
@@ -21,6 +22,7 @@ class CE_CodedWithEquivalents(Component):
 
     @classmethod
     def as_dict(cls):
+                
         return {
             "code": "",
             "codeSystem": "",
