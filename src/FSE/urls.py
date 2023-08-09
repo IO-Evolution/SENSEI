@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import DocumentApiView
+from .views import GenerateDocument
 
 urlpatterns = [
-    path('list/all', DocumentApiView.as_view()),
+    path('generate/', GenerateDocument)
 ]

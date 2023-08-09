@@ -1,15 +1,14 @@
-from django.shortcuts import render
+import json
+from PyCDA.Factory import XMLfactory as Factory
+from PyCDA.Components import ClinicalDocument as CD
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-from .models import FSE_DOCUMENT
-from .serializers import DocumentSerializer
-
-class DocumentApiView(APIView):
-    def get(self, request, *args, **kwargs):
-        documents = FSE_DOCUMENT.objects.all()
-        serializer = DocumentSerializer(documents, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+@api_view(['POST'])
+def GenerateDocument(self, request):
+    json_data = json.load(request.data.get('document'))
+    doc = CD.ClinicalDocument("ClinicalDocument", json_data["ClinicalDocument"])
+    fact = Factory.XMLfactory(doc)
+    return Response({"ClinicalDocument": fact.dict_to_xml()}, status=status.HTTP_200_OK)
