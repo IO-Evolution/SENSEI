@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import GenerateDocument
+from .views import ClinicalDocumentGeneration
 
 urlpatterns = [
-    path('generate/', GenerateDocument)
+    path('generate/', ClinicalDocumentGeneration.as_view())
 ]
