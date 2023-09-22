@@ -1,14 +1,23 @@
-import json
-from PyCDA.Factory import XMLfactory as Factory
-from PyCDA.Components import ClinicalDocument as CD
+from PyClinicalDocumentArchitecture.Components import ClinicalDocument as CD
+from PyClinicalDocumentArchitecture.Factory import XMLfactory as Factory
+from PyClinicalDocumentArchitecture.Templating.TemplateGenius import TemplateGenius, DOC_TYPE
+from django.http import HttpResponse
+from rest_framework.views import APIView
 
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
-@api_view(['POST'])
-def GenerateDocument(self, request):
-    json_data = json.load(request.data.get('document'))
-    doc = CD.ClinicalDocument("ClinicalDocument", json_data["ClinicalDocument"])
-    fact = Factory.XMLfactory(doc)
-    return Response({"ClinicalDocument": fact.dict_to_xml()}, status=status.HTTP_200_OK)
+class ClinicalDocumentGeneration(APIView):
+
+    def post(self, request, format=None):
+        doc = CD.ClinicalDocument("ClinicalDocument", request.data)
+        fact = Factory.XMLfactory(doc)
+        return HttpResponse(fact.dict_to_xml(), content_type="application/xml")
+
+
+class ClinicalDocumentTemplating(APIView):
+
+    def get(self, request, doc_type):
+        import json
+
+        tg = TemplateGenius()
+        json_doc = json.dumps(tg.generate_template(DOC_TYPE(doc_type)))
+        return HttpResponse(json_doc, content_type="application/json")
