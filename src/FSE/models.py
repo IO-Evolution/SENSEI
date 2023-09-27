@@ -18,6 +18,7 @@ DOCS_STATUS = (
 class FSE_DOCUMENT_LOG(models.Model):
     id = models.AutoField("ID", primary_key=True)
     host = models.CharField("HOST", max_length=15, blank=False, null=False)
+    doc_id = models.CharField("Document ID", max_length=500, blank=True, null=True)
     doc_type = models.CharField("Document Type", max_length=50, choices=DOCS_CHOICES)
     xml_code = models.TextField("XML Code", blank=True, null=True)
     json_code = models.TextField("JS Code", blank=True, null=True)

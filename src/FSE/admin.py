@@ -6,7 +6,9 @@ from .models import FSE_DOCUMENT_LOG
 @admin.register(FSE_DOCUMENT_LOG)
 class FSE_DOCUMENT_LOG_Admin(admin.ModelAdmin):
     date_hierarchy = "date"
-    list_display = ["id", "doc_type", "status_view"]
+    list_display = ["id", "doc_type", "doc_id", "status_view"]
+    search_fields = ["id", "document_id", "date"]
+    list_filer = ["status"]
 
     @admin.display(description="Status", boolean=True)
     def status_view(self, obj):
